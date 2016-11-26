@@ -3,14 +3,14 @@
 
 
 <script type="text/javascript" src="/static/js/analytics.js"></script>
-<script type="text/javascript">archive_analytics.values.server_name="wwwb-app12.us.archive.org";archive_analytics.values.server_ms=138;</script>
+<script type="text/javascript">archive_analytics.values.server_name="wwwb-app8.us.archive.org";archive_analytics.values.server_ms=170;</script>
 <link type="text/css" rel="stylesheet" href="/static/css/banner-styles.css"/>
 
 
 <title>jfbterm for FreeBSD</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="description" content="jfbterm for FreeBSD">
-<meta name="keywords" content="jfbterm,FreeBSD">
+<meta name="keywords" content="jfbterm,FreeBSD,NetBSD,OpenBSD">
 <base href="https://web.archive.org/" />
 </head>
 <body>
@@ -23,62 +23,50 @@
 <h2>jfbterm とは</h2>
 
 <p>
-KON をベースに作成されたソフトウェアで、Linux のフレームバッファを使用して多言語表示を行うことが出来ます。
+KON2 をベースに作成された Linux のソフトウェアで、フレームバッファを使用してコンソールで多言語表示を行うことが出来ます。
 </p>
 
 <h2>jfbterm for FreeBSD とは</h2>
 
 <p>
-jfbterm バージョン 0.4.7 を FreeBSD に移植したものです。オリジナルにない機能は次のとおりです。
+jfbterm を FreeBSD に最適化するのがプロジェクトのゴールです。オリジナルの jfbterm には無い機能は次のとおりです。
 </p>
 
 <ul>
-<li>ビープ音を鳴らすことが可能です。
-<li>カーソルを点滅させることが可能です。
-<li>バックスクロールが可能です。
-<li>背景に画像を表示することが可能です。
-<li>256 色表示が可能です。
+<li>マウスを使用してコピー＆ペーストを行うことが出来ます。
+<li>マウス トラッキングをサポートしています。
+<li>東アジアの文字幅をサポートしています。
+<li>キーリピート間隔を設定することが出来ます。
+<li>ビープ音を鳴らすことが出来ます。
+<li>カーソルを点滅させたり、色をつけたり、高さを調整することが出来ます。
+<li>スクリーンセーバーの種類と起動するまでの時間を指定することが出来ます。
+<li>バックスクロールを行うことが出来ます。
+<li>背景に画像を表示することが出来ます。
+<li>ANSI カラーを指定できます。
+<li>256 色表示が出来ます。
+<li>文字に下線をつけることが出来ます。
+<li>文字に影をつけることが出来ます。
+<li>MTRR を使用して描画速度を向上させることが出来ます。
+<li>オリジナルの jfbterm に含まれるさまざまなバグが修正されています。
+<li>FreeBSD/NetBSD/OpenBSD/Linux で動作します。(<a href="/web/20090523101656/http://www.ac.auone-net.jp/~baba/jfbterm/INSTALL">ここを参照してください</a>)
 </ul>
 
 <h2>必要なもの</h2>
 
 <p>
 jfbterm for FreeBSD を使用するには、VBE 2.0 (VESA BIOS EXTENSION 2.0) に対応したビデオカードが必要です。
-また、8bpp, 15bpp, 16bpp, 24bpp, 32bpp のいずれかの色深度に切り替え可能で、リニア・フレームバッファに対応していることが条件になります。
 </p>
 
 <h2>jfbterm for FreeBSD を使用するには</h2>
 
 <p>
-FreeBSD 6.3-PRERELEASE で、jfbterm for FreeBSD を使用するまでの設定を解説します。
+FreeBSD 7.1-STABLE で、jfbterm for FreeBSD を使用するまでの設定を解説します。
 <p>
-
-<h3>VESA フレームバッファのモジュールをロードする</h3>
-
-<p>
-次の手順にしたがって VESA フレームバッファのモジュールをロードします。
-</p>
-
-<pre>
-# kldload vesa
-</pre>
-
-<p>
-起動時に VESA フレームバッファのモジュールをロードするように、設定ファイルを編集します。
-</p>
-
-<p>
-/boot/loader.conf に次の一行を追加します。
-</p>
-
-<pre>
-vesa_load="YES"
-</pre>
 
 <h3>jfbterm for FreeBSD をインストールする</h3>
 
 <p>
-jfbterm for FreeBSD をインストールするには、libiconv、gmake、pkg-config、autoconf-2.61、automake-1.4 および、png が必要です。
+jfbterm for FreeBSD をインストールするには、libiconv、gmake、pkg-config、autoconf-2.62、automake-1.4、png および、gnu-unifont が必要です。
 インストールされていない場合は、Ports Collection から、次の Ports をインストールします。
 </p>
 
@@ -86,9 +74,10 @@ jfbterm for FreeBSD をインストールするには、libiconv、gmake、pkg-c
 <li>converters/libiconv
 <li>devel/gmake
 <li>devel/pkg-config
-<li>devel/autoconf261
+<li>devel/autoconf262
 <li>devel/automake14
 <li>graphics/png
+<li>x11-fonts/gnu-unifont
 </ul>
 
 <p>
@@ -96,37 +85,13 @@ jfbterm for FreeBSD をインストールするには、libiconv、gmake、pkg-c
 </p>
 
 <pre>
-% fetch http://www.ac.auone-net.jp/~baba/jfbterm/jfbterm-0.4.7-FreeBSD-0.4.0.tar.gz
-% tar xvzf jfbterm-0.4.7-FreeBSD-0.4.0.tar.gz
-% cd jfbterm-0.4.7-FreeBSD-0.4.0
+% fetch http://www.ac.auone-net.jp/~baba/jfbterm/jfbterm-FreeBSD-0.6.0.tar.gz
+% tar xvzf jfbterm-FreeBSD-0.6.0.tar.gz
+% cd jfbterm-FreeBSD-0.6.0
 % ./configure CPPFLAGS=-I/usr/local/include LDFLAGS=-L/usr/local/lib --prefix=/usr/local --mandir=/usr/local/man
 % /usr/local/bin/gmake
 % su
 # /usr/local/bin/gmake install
-</pre>
-
-<h3>GNU unifont をインストールする</h3>
-
-<p>
-GNU unifont をインストールするには、bdftopcf が必要です。
-インストールされていない場合は、Ports Collection から、次の Ports をインストールします。
-</p>
-
-<ul>
-<li>x11-fonts/bdftopcf
-</ul>
-
-<p>
-次の手順にしたがって GNU unifont をインストールしてください。
-</p>
-
-<pre>
-% fetch http://czyborra.com/unifont/hex2bdf
-% fetch http://czyborra.com/unifont/unifont.hex.gz
-% chmod +x hex2bdf
-% gzip -dc unifont.hex.gz | ./hex2bdf | /usr/local/bin/bdftopcf | gzip -9 > unifont.pcf.gz
-% su
-# cp unifont.pcf.gz /usr/local/lib/X11/fonts/local/unifont.pcf.gz
 </pre>
 
 <h3>端末ケーパビリティを追加する</h3>
@@ -149,53 +114,6 @@ jfbterm の端末ケーパビリティを追加します。
 <pre>
 # cp /usr/local/etc/jfbterm.conf.sample /usr/local/etc/jfbterm.conf
 </pre>
-
-<h2>画面モードを変更するには</h2>
-
-<p>
-初期状態では、画面のモードが 1024x768 16bpp に設定されています。ここでは、1024x768 16bpp から 1280x1024 16bpp に変更する方法を解説します。
-</p>
-
-<p>
-使用できる画面モードを確認します。
-</p>
-
-<pre>
-% vidcontrol -i mode
-    mode#     flags   type    size       font      window      linear buffer
-------------------------------------------------------------------------------
-　　　　　:
-　　　　(中略)
-　　　　　:
-256 (0x100) 0x0000000f G 640x400x8 1     8x16  0xa0000 64k 64k 0xfe000000 4096k
-257 (0x101) 0x0000000f G 640x480x8 1     8x16  0xa0000 64k 64k 0xfe000000 4096k
-258 (0x102) 0x0000000b G 800x600x4 4     8x14  0xa0000 64k 64k 0x00000000 4096k
-259 (0x103) 0x0000000f G 800x600x8 1     8x16  0xa0000 64k 64k 0xfe000000 4096k
-261 (0x105) 0x0000000f G 1024x768x8 1    8x16  0xa0000 64k 64k 0xfe000000 4096k
-263 (0x107) 0x0000000f G 1280x1024x8 1   8x16  0xa0000 64k 64k 0xfe000000 4096k
-264 (0x108) 0x00000009 T 80x60           8x8   0xb8000 32k 32k 0x00000000 4096k
-265 (0x109) 0x00000009 T 132x25          8x16  0xb8000 32k 32k 0x00000000 4096k
-267 (0x10b) 0x00000009 T 132x50          8x8   0xb8000 32k 32k 0x00000000 4096k
-268 (0x10c) 0x00000009 T 132x60          8x8   0xb8000 32k 32k 0x00000000 4096k
-273 (0x111) 0x0000000f G 640x480x16 1    8x16  0xa0000 64k 64k 0xfe000000 4096k
-274 (0x112) 0x0000000f G 640x480x32 1    8x16  0xa0000 64k 64k 0xfe000000 4096k
-276 (0x114) 0x0000000f G 800x600x16 1    8x16  0xa0000 64k 64k 0xfe000000 4096k
-277 (0x115) 0x0000000f G 800x600x32 1    8x16  0xa0000 64k 64k 0xfe000000 4096k
-279 (0x117) 0x0000000f G 1024x768x16 1   8x16  0xa0000 64k 64k 0xfe000000 4096k　← 初期値
-280 (0x118) 0x0000000f G 1024x768x32 1   8x16  0xa0000 64k 64k 0xfe000000 4096k
-282 (0x11a) 0x0000000f G 1280x1024x16 1  8x16  0xa0000 64k 64k 0xfe000000 4096k　← 変更後
-284 (0x11c) 0x0000000f G 1600x1200x8 1   8x16  0xa0000 64k 64k 0xfe000000 4096k
-286 (0x11e) 0x0000000f G 1600x1200x16 1  8x16  0xa0000 64k 64k 0xfe000000 4096k
-</pre>
-
-<p>
-設定ファイル /usr/local/etc/jfbterm.conf の video.mode の値を 282 に変更すると、画面のモードが 1280x1024 16bpp に設定されます。
-</p>
-
-<pre>
-video.mode: 282
-</pre>
-
 
 <h2>カラー表示を止めたいときは</h2>
 
@@ -229,52 +147,34 @@ syscons(4) のキー割り当て設定ファイルをコピーします。
   106   meta   fkey63 fkey63 fkey63 fkey63 fkey63 fkey63 fkey63  O
 </pre>
 
+<p>
+キー割り当て設定ファイルをロードします。
+</p>
+
+<pre>
+# kbdcontrol -l /usr/share/syscons/keymaps/us.104.kbd
+</pre>
+
 /etc/rc.conf の keymap の設定を変更します。
 
 <pre>
 keymap="us.104"
 </pre>
 
-<h2>表示速度が遅いときは</h2>
-
-<p>
-VESA フレームバッファの描画速度が遅いと感じることがありますが、ライトコンバインを設定することによって、描画速度を向上することが出来ます。
-</p>
-
-<pre>
-% vidcontrol -i adapter
-fb0:
-    vga0, type:VESA VGA (5), flags:0x700ff
-    initial mode:24, current mode:282, BIOS mode:3
-    frame buffer window:0xfe000000, buffer size:0x400000
-    window size:0x400000, origin:0x0
-    display start address (0, 0), scan line width:2560
-    reserved:0xfe000000
-</pre>
-
-<p>
-ライトコンバインを設定する範囲は、frame buffer window から、buffer size を指定します。
-</p>
-
-<pre>
-# memcontrol set -b 0xfe000000 -l 0x400000 -o vesafb write-combine
-</pre>
-
 <h2>ダウンロード</h2>
 
-<a href="/web/20080226043336/http://www.ac.auone-net.jp/~baba/jfbterm/jfbterm-0.4.7-FreeBSD-0.4.0.tar.gz">jfbterm-0.4.7-FreeBSD-0.4.0.tar.gz</a>
+<a href="/web/20090523101656/http://www.ac.auone-net.jp/~baba/jfbterm/jfbterm-FreeBSD-0.6.0.tar.gz">jfbterm-FreeBSD-0.6.0.tar.gz</a>
 
 <h2>スクリーンショット</h2>
 
 <h3>emacs21+mule-ucs で view-hello-file を実行したところ</h3>
-<img src="/web/20080226043336im_/http://www.ac.auone-net.jp/~baba/jfbterm/emacs21-mule-ucs.png">
+<img src="/web/20090523101656im_/http://www.ac.auone-net.jp/~baba/jfbterm/emacs21-mule-ucs.png">
 
 <h3>256 色表示を行ったところ</h3>
-<img src="/web/20080226043336im_/http://www.ac.auone-net.jp/~baba/jfbterm/256color-demo.png">
+<img src="/web/20090523101656im_/http://www.ac.auone-net.jp/~baba/jfbterm/256color-demo.png">
 
 <h3>端末の背景に画像を表示したところ</h3>
-<img src="/web/20080226043336im_/http://www.ac.auone-net.jp/~baba/jfbterm/wallpaper-demo.jpg">
-
+<img src="/web/20090523101656im_/http://www.ac.auone-net.jp/~baba/jfbterm/wallpaper-demo.jpg">
 
 <br><br>
 <hr>
@@ -289,8 +189,8 @@ fb0:
 
 
 <!--
-     FILE ARCHIVED ON 4:33:36 Feb 26, 2008 AND RETRIEVED FROM THE
-     INTERNET ARCHIVE ON 4:36:25 Nov 26, 2016.
+     FILE ARCHIVED ON 10:16:56 May 23, 2009 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 4:39:10 Nov 26, 2016.
      JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
 
      ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
