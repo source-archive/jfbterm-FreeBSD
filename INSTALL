@@ -1,6 +1,6 @@
 * FreeBSD 7.1
 
-$B<!$N(B ports $B$r%$%s%9%H!<%k$7$F$/$@$5$$!#(B
+次の ports をインストールしてください。
 
  - converters/libiconv
  - devel/gmake
@@ -10,7 +10,7 @@
  - graphics/png
  - x11-fonts/gnu-unifont
 
-$B<!$N<j=g$r<B9T$7$F$/$@$5$$!#(B
+次の手順を実行してください。
 
 % ./configure CPPFLAGS=-I/usr/local/include \
               LDFLAGS=-L/usr/local/lib \
@@ -26,13 +26,13 @@
 
 * NetBSD 4.0.1
 
-$B4D6-$K$h$C$F$O?'$,4V0c$C$FI=<($5$l$k$3$H$,$"$j$^$9!#(B
+環境によっては色が間違って表示されることがあります。
 
-$B%+!<%M%k$N:F9=C[$,I,MW$G$9!#(B
+カーネルの再構築が必要です。
 http://www.netbsd.org/docs/guide/en/chap-cons.html#chap-cons-wscons-wsdisplay-framebuffer
-$B$N!V(B8.1.1.3. Enabling VESA framebuffer console$B!W$r;29M$K$7$F$/$@$5$$!#(B
+の「8.1.1.3. Enabling VESA framebuffer console」を参考にしてください。
 
-$B<!$N(B pkgsrc $B$r%$%s%9%H!<%k$7$F$/$@$5$$!#(B
+次の pkgsrc をインストールしてください。
 
   - devel/autoconf
   - devel/automake
@@ -40,7 +40,7 @@ http://www.netbsd.org/docs/guide/en/chap-cons.html#chap-cons-wscons-wsdisplay-fr
   - devel/pkg-config
   - graphics/png
 
-$B<!$N<j=g$r<B9T$7$F$/$@$5$$!#(B
+次の手順を実行してください。
 
 % rm configure
 % aclocal
@@ -65,14 +65,14 @@ http://www.netbsd.org/docs/guide/en/chap-cons.html#chap-cons-wscons-wsdisplay-fr
 
 * OpenBSD 4.4
 
-$B4D6-$K$h$C$F$O?'$,4V0c$C$FI=<($5$l$k$3$H$,$"$j$^$9!#(B
+環境によっては色が間違って表示されることがあります。
 
-$B<!$NFs9T$rM-8z$K$7$F%+!<%M%k$N:F9=C[$r9T$C$F$/$@$5$$!#(B
+次の二行を有効にしてカーネルの再構築を行ってください。
 
   vesabios0	at mainbus?
   option VESAFB
 
-$B<!$N(B ports $B$r%$%s%9%H!<%k$7$F$/$@$5$$!#(B
+次の ports をインストールしてください。
 
   - converters/libiconv
   - devel/autoconf/2.59
@@ -80,7 +80,7 @@ http://www.netbsd.org/docs/guide/en/chap-cons.html#chap-cons-wscons-wsdisplay-fr
   - devel/gmake
   - graphics/png
 
-$B<!$N<j=g$r<B9T$7$F$/$@$5$$!#(B
+次の手順を実行してください。
 
 $ rm configure
 $ export AUTOCONF_VERSION=2.59
@@ -105,7 +105,7 @@ $ su
 
 * Debian GNU/Linux 4.0r3
 
-$B<!$N%Q%C%1!<%8$r%$%s%9%H!<%k$7$F$/$@$5$$!#(B
+次のパッケージをインストールしてください。
 
  - autoconf
  - automake
@@ -117,7 +117,7 @@ $ su
  - make
  - pkg-config
 
-$B<!$N<j=g$r<B9T$7$F$/$@$5$$!#(B
+次の手順を実行してください。
 
 $ rm configure
 $ aclocal

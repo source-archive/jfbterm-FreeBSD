@@ -1,141 +1,141 @@
 2010-01-31 Yusuke Baba     <babayaga1@y8.dion.ne.jp>
 
-	* jfbterm for FreeBSD version 0.6.1 $B$N%j%j!<%9!#(B
-	* FreeBSD $B$K$*$$$F(B utmpx $B$X$NBP1~$r9T$&$?$a$N%Q%C%A$rE,MQ!#(B
-	  $B%Q%C%ADs6!<T(B <jkim@freebsd.org>
+	* jfbterm for FreeBSD version 0.6.1 のリリース。
+	* FreeBSD において utmpx への対応を行うためのパッチを適用。
+	  パッチ提供者 <jkim@freebsd.org>
 
 2009-02-26 Yusuke Baba     <babayaga1@y8.dion.ne.jp>
 
-	* jfbterm for FreeBSD version 0.6.0 $B$N%j%j!<%9!#(B
-	* $B%j%U%!%/%?%j%s%0$r9T$C$?!#(B
-	* ESC [ 6 n $B$G4V0c$C$?%+!<%=%k0LCV$rJs9p$9$kLdBj$r=$@5$7$?!#(B
-	* $B%Q%1%C%H%b!<%I$KJQ99$7$?%^%9%?!<5<;wC<Kv$+$iFI$_9~$s$@@)8f%P%$%H$r(B
-	  $BL5;k$7$F$$$J$+$C$?LdBj$r=$@5$7$?!#(B
-	* $B%S%C%H%^%C%W%U%!%$%k$NFI$_9~$_=hM}$K%(%s%G%#%"%s$K0MB8$7$F$$$?2U=j$,(B
-	  $B$"$C$?$N$r=$@5$7$?!#(B
-	* $B%3%^%s%I%i%$%s(B $B%*%W%7%g%s(B -r $B$*$h$S!"(B--reset $B$NF0:n$,;EMM$K(B
-	  $B1h$C$F$$$J$+$C$?E@$r=$@5$7$?!#(B
-	* configure $B%9%/%j%W%H$+$i(B --enable-scrollback $B$r:o=|$7$?!#(B
-	* configure $B%9%/%j%W%H$K(B --enable-vga16fb $B%*%W%7%g%s$rDI2C$7$?!#(B
-	* VGA $B%U%l!<%`%P%C%U%!$K$h$kI=<($r%5%]!<%H$7$?!#(B(FreeBSD)
-	* $B@_Dj%U%!%$%k$N%-!<!V(Bscrollback.history$B!W$r!V(Bhistory$B!W$KJQ99$7$?!#(B
-	* $B4D6-JQ?t(B $SHELL $B$,Dj5A$5$l$F$$$J$$$H$-!"(B/bin/sh $B$G$O$J$/%m%0%$%s(B
-	  $B%7%'%k$r<B9T$9$k$h$&$KJQ99$7$?!#(B
-	* $BBP1~$9$k%(%s%3!<%I>pJs$,8+$D$+$i$J$$J8;z$N$H$-!"(BPCF $B%U%)%s%H$G(B
-	  $BDj5A$5$l$?%G%U%)%k%H$N%0%j%U$rI=<($9$k$h$&$KJQ99$7$?!#(B
-	* ESC [ ? 5 h $B$H(B ESC [ ? 5 l $B$K$h$kH?E>I=<($NM-8z2=!&L58z2=$r(B
-	  $B%5%]!<%H$7$?!#(B
-	* VT100 $B$N%"%W%j%1!<%7%g%s%+!<%=%k%b!<%I$r%5%]!<%H$7$?!#(B
-	* $BEl%"%8%"$NJ8;zI}$r%5%]!<%H$7$?!#(B
-	* $B%[%$!<%kIU$-$N%^%&%9$r%5%]!<%H$7$?!#(B
-	* $B2<@~$NI=<($r%5%]!<%H$7$?!#(B
-	* $B%^%&%9%H%i%C%-%s%0$r%5%]!<%H$7$?!#(B
+	* jfbterm for FreeBSD version 0.6.0 のリリース。
+	* リファクタリングを行った。
+	* ESC [ 6 n で間違ったカーソル位置を報告する問題を修正した。
+	* パケットモードに変更したマスター擬似端末から読み込んだ制御バイトを
+	  無視していなかった問題を修正した。
+	* ビットマップファイルの読み込み処理にエンディアンに依存していた箇所が
+	  あったのを修正した。
+	* コマンドライン オプション -r および、--reset の動作が仕様に
+	  沿っていなかった点を修正した。
+	* configure スクリプトから --enable-scrollback を削除した。
+	* configure スクリプトに --enable-vga16fb オプションを追加した。
+	* VGA フレームバッファによる表示をサポートした。(FreeBSD)
+	* 設定ファイルのキー「scrollback.history」を「history」に変更した。
+	* 環境変数 $SHELL が定義されていないとき、/bin/sh ではなくログイン
+	  シェルを実行するように変更した。
+	* 対応するエンコード情報が見つからない文字のとき、PCF フォントで
+	  定義されたデフォルトのグリフを表示するように変更した。
+	* ESC [ ? 5 h と ESC [ ? 5 l による反転表示の有効化・無効化を
+	  サポートした。
+	* VT100 のアプリケーションカーソルモードをサポートした。
+	* 東アジアの文字幅をサポートした。
+	* ホイール付きのマウスをサポートした。
+	* 下線の表示をサポートした。
+	* マウストラッキングをサポートした。
 
 2008-05-01 Yusuke Baba     <babayaga1@y8.dion.ne.jp>
 
-	* jfbterm for FreeBSD version 0.5.1 $B$N%j%j!<%9!#(B
-	* $B%j%U%!%/%?%j%s%0$r9T$C$?!#(B
-	  $B%7%0%J%k<~$j$r=EE@E*$K=q$-49$($?!#(B
-	* configure $B%9%/%j%W%H$N=$@5$r9T$C$?!#(B
-	* FreeBSD/NetBSD/OpenBSD $B$K$*$$$F(B STOP $BJ8;z$rAw$C$?8e$K(B START $BJ8;z$r(B
-	  $BAw$k$3$H$,$G$-$J$$LdBj$r=$@5$7$?!#(B
-	* NetBSD/OpenBSD $B$K$*$$$F%9%/%m!<%k%P%C%/=PMh$J$$LdBj$r=$@5$7$?!#(B
-	* NetBSD $B$K$*$$$F!"?'?<EY$,(B 8bpp $B$N$H$-=*N;;~$K%Q%l%C%H$,$*$+$7$/$J$k(B
-	  $BLdBj$r=$@5$7$?!#(B
-	* $B2hLL$N>C5n$G%9%F!<%?%9%i%$%s$r>C5n$7$F$$$?LdBj$r=$@5$7$?!#(B
-	* $B4D6-JQ?t(B $FRAMEBUFFER $B$r;2>H$7$J$$$h$&$K$7$?!#(B
+	* jfbterm for FreeBSD version 0.5.1 のリリース。
+	* リファクタリングを行った。
+	  シグナル周りを重点的に書き換えた。
+	* configure スクリプトの修正を行った。
+	* FreeBSD/NetBSD/OpenBSD において STOP 文字を送った後に START 文字を
+	  送ることができない問題を修正した。
+	* NetBSD/OpenBSD においてスクロールバック出来ない問題を修正した。
+	* NetBSD において、色深度が 8bpp のとき終了時にパレットがおかしくなる
+	  問題を修正した。
+	* 画面の消去でステータスラインを消去していた問題を修正した。
+	* 環境変数 $FRAMEBUFFER を参照しないようにした。
 
 2008-04-05 Yusuke Baba     <babayaga1@y8.dion.ne.jp>
 
-	* jfbterm for FreeBSD version 0.5.0 $B$N%j%j!<%9!#(B
-	* $B%j%U%!%/%?%j%s%0$r9T$C$?!#(B
-	  Linux $B$H(B NetBSD $B$N%3!<%G%#%s%0%9%?%$%k$r;29M$K=q$-49$($?!#(B
-	  $BITMW$JJQ?t!"4X?t!"%^%/%m!"9=B$BN$N%a%s%P$r:o=|$7$?!#(B
-	  $BJQ?tL>!"4X?tL>$r=$@5$7$?!#(B
-	  $BJQ?t!"4X?t$N%9%3!<%W$r8+D>$7!"5!G=$4$H$K%b%8%e!<%k$NJ,3d$r9T$C$?!#(B
-	  $BFH<+$N%V!<%kCM$N7?(B TBool <mytypes.h> $B$r;HMQ$7$F$$$?2U=j$r(B bool
-	  <stdbool.h> $B$K=q$-D>$7$?!#(B
-	  $B@0?t$r%V!<%kCM$NBe$o$j$K;HMQ$7$F$$$k2U=j$r(B bool $B$K=q$-D>$7$?!#(B
-	* $B%3!<%G%#%s%0>e$N%_%9$r=$@5$7$?!#(B
-	  $B%a%b%j$N3+J|O3$l!"4m81$JJ8;zNsA`:n!"%U%!%$%k%G%#%9%/%j%W%?$NJD$8K:$l(B
-	  $B$J$I!#(B
-	  wait(3) $B$N;HMQJ}K!$,8m$C$F$$$?$N$r=$@5$7$?!#(B
-	* 256 $B%+%i!<I=<($G%7%9%F%`%+%i!<$r8m$C$?%$%s%G%C%/%9$G99?7$9$kLdBj$r(B
-	  $B=$@5$7$?!#(B
-	* $B@_Dj%U%!%$%k$N%5%s%W%k$K5-=R$5$l$F$$$k%3!<%I%;%C%H$,!"(B
-	  nl_langinfo(3) $B$,JV$9CM$K$J$C$F$$$J$+$C$?LdBj$r=$@5$7$?!#(B
-	* 8bpp $B$N$H$-(B 256 $B%+%i!<I=<($r9T$&$H?'$,@5$7$/$J$+$C$?LdBj$r=$@5$7$?!#(B
-	* $B%9%/%m!<%k%P%C%/$r9T$&$H2hLL2<It$K%4%_$,;D$kLdBj$r=$@5$7$?!#(B
-	* 8bpp $B$N$H$-2>A[C<Kv$r@Z$jBX$($k$H%Q%l%C%H$,$*$+$7$/$J$kLdBj$r(B
-	  $B=$@5$7$?!#(B
-	* 257 $B9T$^$?$O(B 257 $B7e0J>e$N4D6-$G@5>o$KI=<($G$-$J$$LdBj$r=$@5$7$?!#(B
-	* OTHER-CODING-SYSTEM $B$H(B UTF-8 $B$G9T$N@^$jJV$7$,@5$7$/9T$o$l$J$$LdBj$r(B
-	  $B=$@5$7$?!#(B
-	* UCS-2BE $B$KJQ49$G$-$J$$%(%s%3!<%G%#%s%0L>$r%(%9%1!<%W%7!<%1%s%9$r(B
-	  $BDL$8$FEO$5$l$k$H(B OTHER-CODING-SYSTEM $B$X$N@Z$jBX$($GL58B%k!<%W$K(B
-	  $B$J$kLdBj$r=$@5$7$?!#(B
-	* $BC<Kv%1!<%Q%S%j%F%#$K%+!<%=%k$NI=<(!&HsI=<($N5-=R$,$"$k$N$K!"(B
-	  $B%+!<%=%k$,>C$($J$$LdBj$r=$@5$7$?!#(B
-	* Linux $B$K$*$$$F!"2>A[C<Kv$r@Z$jBX$($?>uBV$G(B kill $B$5$l$k$H2hLL%b!<%I(B
-	  $B$,La$i$J$$LdBj$r=$@5$7$?!#(B
-	* Linux $B$K$*$$$F!"(Butmp $B$r@5$7$/5-O?$G$-$J$$LdBj$r=$@5$7$?!#(B
-	* $B%*%W%7%g%s(B -q, --quiet $B$rGQ;_$7$?!#(B
-	* $B%W%m%;%9$,(B setuid/setgid $B$5$l$F$$$k$H$-!"%*%W%7%g%s(B -f, --config $B$r(B
-	  $B;HMQ$7$F!"@_Dj%U%!%$%k$N%Q%9$rJQ99=PMh$J$$$h$&$K$7$?!#(B
-	* $B%U%l!<%`%P%C%U%!$N%b%8%e!<%k$,%m!<%I$5$l$F$$$J$$$H$-!"<+F0E*$K%m!<%I(B
-	  $B$9$k$h$&$K$7$?!#(B(FreeBSD 6.3-RELEASE $B0J>e(B)
-	* $B2hLL%b!<%I$N@_Dj<j=g$,J#;($@$C$?$N$G!"4JC1$K;XDj$G$-$k$h$&$K$7$?!#(B
+	* jfbterm for FreeBSD version 0.5.0 のリリース。
+	* リファクタリングを行った。
+	  Linux と NetBSD のコーディングスタイルを参考に書き換えた。
+	  不要な変数、関数、マクロ、構造体のメンバを削除した。
+	  変数名、関数名を修正した。
+	  変数、関数のスコープを見直し、機能ごとにモジュールの分割を行った。
+	  独自のブール値の型 TBool <mytypes.h> を使用していた箇所を bool
+	  <stdbool.h> に書き直した。
+	  整数をブール値の代わりに使用している箇所を bool に書き直した。
+	* コーディング上のミスを修正した。
+	  メモリの開放漏れ、危険な文字列操作、ファイルディスクリプタの閉じ忘れ
+	  など。
+	  wait(3) の使用方法が誤っていたのを修正した。
+	* 256 カラー表示でシステムカラーを誤ったインデックスで更新する問題を
+	  修正した。
+	* 設定ファイルのサンプルに記述されているコードセットが、
+	  nl_langinfo(3) が返す値になっていなかった問題を修正した。
+	* 8bpp のとき 256 カラー表示を行うと色が正しくなかった問題を修正した。
+	* スクロールバックを行うと画面下部にゴミが残る問題を修正した。
+	* 8bpp のとき仮想端末を切り替えるとパレットがおかしくなる問題を
+	  修正した。
+	* 257 行または 257 桁以上の環境で正常に表示できない問題を修正した。
+	* OTHER-CODING-SYSTEM と UTF-8 で行の折り返しが正しく行われない問題を
+	  修正した。
+	* UCS-2BE に変換できないエンコーディング名をエスケープシーケンスを
+	  通じて渡されると OTHER-CODING-SYSTEM への切り替えで無限ループに
+	  なる問題を修正した。
+	* 端末ケーパビリティにカーソルの表示・非表示の記述があるのに、
+	  カーソルが消えない問題を修正した。
+	* Linux において、仮想端末を切り替えた状態で kill されると画面モード
+	  が戻らない問題を修正した。
+	* Linux において、utmp を正しく記録できない問題を修正した。
+	* オプション -q, --quiet を廃止した。
+	* プロセスが setuid/setgid されているとき、オプション -f, --config を
+	  使用して、設定ファイルのパスを変更出来ないようにした。
+	* フレームバッファのモジュールがロードされていないとき、自動的にロード
+	  するようにした。(FreeBSD 6.3-RELEASE 以上)
+	* 画面モードの設定手順が複雑だったので、簡単に指定できるようにした。
 	  (FreeBSD)
-	* $B4D6-JQ?t(B $FRAMEBUFFER $B$r@_Dj$9$k$h$&$K$7$?!#(B
-	* $B%+!<%=%k$N<oN`!"E@LG4V3V!"?'$*$h$S!"9b$5$r;XDj$G$-$k$h$&$K$7$?!#(B
-	* M+ bitmap fonts $B$r;HMQ$9$k$?$a$N%5%s%W%k$r@_Dj%U%!%$%k$K5-=R$7$?!#(B
-	* $B@_Dj%U%!%$%k$N(B color.gamma $B$rGQ;_$7$?!#(B
-	* $B%9%/%j!<%s%;!<%P!<$N<oN`$H5/F0$9$k$^$G$N;~4V$r@_Dj$G$-$k$h$&$K$7$?!#(B
-	* $B%i%$%H%3%s%P%$%s$K@_Dj$G$-$k$h$&$K$7$?!#(B
-	* $B%^%&%9$K$h$k%3%T!<%Z!<%9%H$r9T$($k$h$&$K$7$?!#(B
-	* ANSI $B%+%i!<$r@_Dj$G$-$k$h$&$K$7$?!#(B
-	* $B%-!<%j%T!<%H4V3V$r@_Dj$G$-$k$h$&$K$7$?!#(B
-	* $BJ8;z$KG$0U$N?'$N1F$r$D$1$i$l$k$h$&$K$7$?!#(B
-	* $B%Y%k$N<oN`!";}B3;~4V$*$h$S!"%T%C%A$r;XDj$G$-$k$h$&$K$7$?!#(B
-	* $B2D;k%Y%k$r%5%]!<%H$7$?!#(B
-	* NetBSD $B$H(B OpenBSD $B$GF0:n$9$k$h$&$K$7$?!#(B
-	* $B%"%/%F%#%V$J2>A[C<Kv$,%0%i%U%#%C%/%b!<%I$J$i@Z$jBX$($FI=<($9$k5!G=$r(B
-	  $BGQ;_$7$?!#(B
-	* 2bpp$B!"(B4bpp (vga16fb) $B$NI=<(5!G=$rGQ;_$7$?!#(B
-	* configure $B%9%/%j%W%H$+$i(B --enable-packed-pixels, --enable-dimmer,
-	  --enable-beep, --enable-cursor-blink, --enable-color-gamma $B$r(B
-	  $B:o=|$7$?!#(B
+	* 環境変数 $FRAMEBUFFER を設定するようにした。
+	* カーソルの種類、点滅間隔、色および、高さを指定できるようにした。
+	* M+ bitmap fonts を使用するためのサンプルを設定ファイルに記述した。
+	* 設定ファイルの color.gamma を廃止した。
+	* スクリーンセーバーの種類と起動するまでの時間を設定できるようにした。
+	* ライトコンバインに設定できるようにした。
+	* マウスによるコピーペーストを行えるようにした。
+	* ANSI カラーを設定できるようにした。
+	* キーリピート間隔を設定できるようにした。
+	* 文字に任意の色の影をつけられるようにした。
+	* ベルの種類、持続時間および、ピッチを指定できるようにした。
+	* 可視ベルをサポートした。
+	* NetBSD と OpenBSD で動作するようにした。
+	* アクティブな仮想端末がグラフィックモードなら切り替えて表示する機能を
+	  廃止した。
+	* 2bpp、4bpp (vga16fb) の表示機能を廃止した。
+	* configure スクリプトから --enable-packed-pixels, --enable-dimmer,
+	  --enable-beep, --enable-cursor-blink, --enable-color-gamma を
+	  削除した。
 
 2007-12-03  Yusuke Baba     <babayaga1@y8.dion.ne.jp>
 
-	* jfbterm for FreeBSD version 0.4.0 $B$N%j%j!<%9!#(B
-	* $B=*N;$7$?$H$-$K2hLL$,??$C0E$K$J$k$3$H$,$"$C$?E@$r=$@5$7$?!#(B
-	* Home$B!"(BEnd$B!"(BF1$B!A(BF5$B!"(BF10$B!A(BF20 $B%-!<$,;HMQ$G$-$J$+$C$?E@$r=$@5$7$?!#(B
-	* 256 $B%+%i!<I=<($N%5%]!<%H!#(B
-	* configure $B%9%/%j%W%H$K(B --enable-256-color $B$rDI2C$7$?!#(B
+	* jfbterm for FreeBSD version 0.4.0 のリリース。
+	* 終了したときに画面が真っ暗になることがあった点を修正した。
+	* Home、End、F1〜F5、F10〜F20 キーが使用できなかった点を修正した。
+	* 256 カラー表示のサポート。
+	* configure スクリプトに --enable-256-color を追加した。
 
 2007-11-21  Yusuke Baba     <babayaga1@y8.dion.ne.jp>
 
-	* jfbterm for FreeBSD version 0.3.0 $B$N%j%j!<%9!#(B
-	* JFBTERM Unofficial eXtension Patch project $B$+$i$N@.2L$r%^!<%8$7$?!#(B
-	  $B%Y%k$r%5%]!<%H$7$?!#(B
-	  $BE@LG%+!<%=%k$r%5%]!<%H$7$?!#(B
-	  $B%9%/%m!<%k%P%C%/$r%5%]!<%H$7$?!#(B
-	  $BGX7J$K2hA|$rI=<($G$-$k$h$&$K$7$?!#(B
-	* $B2hLL%b!<%I$r<B9T;~$KJQ99$G$-$k$h$&$K$7$?!#(B
-	  $B$3$l$K$h$j%+!<%M%k$N:F9=C[$,I,MW$J$/$J$C$?!#(B
-	* configure $B%9%/%j%W%H$K(B --enable-beep, --enable-cursor-blink, 
-	  --enable-scrollback, --enable-splash $B$rDI2C$7$?!#(B
-	* configure $B%9%/%j%W%H$+$i(B --enable-pseudo-color,
-	  --enable-direct-color, --enable-true-color $B$r:o=|$7$?!#(B
+	* jfbterm for FreeBSD version 0.3.0 のリリース。
+	* JFBTERM Unofficial eXtension Patch project からの成果をマージした。
+	  ベルをサポートした。
+	  点滅カーソルをサポートした。
+	  スクロールバックをサポートした。
+	  背景に画像を表示できるようにした。
+	* 画面モードを実行時に変更できるようにした。
+	  これによりカーネルの再構築が必要なくなった。
+	* configure スクリプトに --enable-beep, --enable-cursor-blink, 
+	  --enable-scrollback, --enable-splash を追加した。
+	* configure スクリプトから --enable-pseudo-color,
+	  --enable-direct-color, --enable-true-color を削除した。
 
 2007-10-24  Yusuke Baba     <babayaga1@y8.dion.ne.jp>
 
-	* jfbterm for FreeBSD version 0.1.0 $B$N%j%j!<%9!#(B
-	* jfbterm $B$r(B FreeBSD $B$GF0:n$5$;$k%Q%C%A$H$7$FDs6!!#(B
-	* configure $B%9%/%j%W%H$+$i(B --enable-reverse-video, --enable-1bpp,
+	* jfbterm for FreeBSD version 0.1.0 のリリース。
+	* jfbterm を FreeBSD で動作させるパッチとして提供。
+	* configure スクリプトから --enable-reverse-video, --enable-1bpp,
 	  --enable-2bpp, --enable-4bpp, --enable-vga16fb,
-	  --enable-check-mmio-error, --enable-force-8bit $B$r:o=|$7$?!#(B
+	  --enable-check-mmio-error, --enable-force-8bit を削除した。
 
 2005-03-12  Fumitoshi UKAI  <ukai@debian.or.jp>
 
@@ -640,199 +640,199 @@
 2000-01-23  Noritoshi Masuichi <nmasu@ma3.justnet.ne.jp>
 
 	* Version 0.3.10
-	    $BG'<12DG=$JJ8;z=89g$rBgI}$KDI2C$7$?!#(B	(Masuichi)
-	    $B4Z9q8l(B(KSC5601-1987)$B$KBP1~$G$-$J$/$J$C$F$$$?$N$r(B
-	  $B=$@5$7$?!#(B					(Masuichi)
+	    認識可能な文字集合を大幅に追加した。	(Masuichi)
+	    韓国語(KSC5601-1987)に対応できなくなっていたのを
+	  修正した。					(Masuichi)
 
 2000-01-11  Noritoshi Masuichi <nmasu@ma3.justnet.ne.jp>
 
-	* Version 0.3.9 ($B7gHV$G$9!#(B)
+	* Version 0.3.9 (欠番です。)
 
 2000-01-11  Noritoshi Masuichi <nmasu@ma3.justnet.ne.jp>
 
 	* Version 0.3.8
-	    --help $B%*%W%7%g%s$rDI2C$7$?!#(B		(Masuichi)
-	    --exec(--shell) $B%*%W%7%g%s$rDI2C$7$?!#$"$^$N(B $B$5$s$N(B
-	  $B%P%C%A$r85$K:n@.$7$?!#(B			(Amano)
+	    --help オプションを追加した。		(Masuichi)
+	    --exec(--shell) オプションを追加した。あまの さんの
+	  バッチを元に作成した。			(Amano)
 
 1999-11-28  Noritoshi Masuichi <nmasu@ma3.justnet.ne.jp>
 
 	* Version 0.3.7
-	    $B%3%s%Q%$%k;~$N7Y9p$r87$7$/$?!#(B
-	  $B0J2<$N4D6-$G!"H/@8$9$k7Y9p$r=|5n$7$?!#(B
+	    コンパイル時の警告を厳しくた。
+	  以下の環境で、発生する警告を除去した。
 		A. AMD K6 233MHz
 		   linux kernel 2.2.13ac2
 		   gcc 2.3.2.3
 		   libc 5.4.46
-	  $B0J2<$N4D6-$G$O!"(Bioperm() $B$N%W%m%H%?%$%W$,L5$$$H7Y9p$5$l$k!#(B
+	  以下の環境では、ioperm() のプロトタイプが無いと警告される。
 		B. AMD K6-2 300MHz
 		   linux kernel 2.2.13
 		   egcs 2.91.66 19990314 (egcs-1.1.2 release)
 		   glibc 2.0.7
-	  $B0J2<$N4D6-$G$O!"(Bvoid* $B7?$N%]%$%s%?$r7W;;$K;HMQ$7$F$$$k$H$$$&!"7Y9p$,(B
-	  $BB??t$G$k!#$?$@$7!"I8=`%$%s%/%k!<%I%U%!%$%kCf$G$=$N$[$H$s$I$,H/@8$9$k!#(B
-	  ioperm() $B$N%W%m%H%?%$%W$,L5$$$H$b7Y9p$5$l$k!#(B
+	  以下の環境では、void* 型のポインタを計算に使用しているという、警告が
+	  多数でる。ただし、標準インクルードファイル中でそのほとんどが発生する。
+	  ioperm() のプロトタイプが無いとも警告される。
 		B. AMD K6-2 300MHz
 		   linux kernel 2.2.13ac3
 		   gcc 2.95.2 19991024 (release)
 		   glibc 2.1.2
 
-	  ioperm() $B$N7Y9p$O(B libc $B$N0c$$$,860x$N$h$&$G$"$k!#(B
+	  ioperm() の警告は libc の違いが原因のようである。
 
-	  $B$J$*!"(B./configure $B$K$O%*%W%7%g%s$r$D$1$F$$$J$$!#(B
+	  なお、./configure にはオプションをつけていない。
 							(Masuichi)
 
 1999-11-24  Noritoshi Masuichi <nmasu@ma3.justnet.ne.jp>
 
 	* Version 0.3.6.
-	    jfbterm$B$N=*N;<j=g$r2~A1$7$?!#(B		(Amano)
-	    brmove@vtermlow.c $B$N(B x86 $BBeBX%3!<%I$r=$@5$7$?!#(B
+	    jfbtermの終了手順を改善した。		(Amano)
+	    brmove@vtermlow.c の x86 代替コードを修正した。
 							(Amano)
-	    DIRECTCOLOR$B$N;~$K6/@)E*$K(B 8bpp$B$K$9$k$?$a$N%3!<%I$rDI2C$7$?!#(B
-	  ./configure --enable-force-8bit $B$GM-8z$K$J$k!#(B
+	    DIRECTCOLORの時に強制的に 8bppにするためのコードを追加した。
+	  ./configure --enable-force-8bit で有効になる。
 							(Amano)(Oe)
-	    $BFbIt=hM}$NLdBj$G$9$,!"3F<o$N@)8f%3!<%I$N(B define $BCM$r(B ISO $BIw$K(B
-	  $B2~$a$^$7$?!#(B					(Masuichi)
+	    内部処理の問題ですが、各種の制御コードの define 値を ISO 風に
+	  改めました。					(Masuichi)
 
 1999-11-17  Noritoshi Masuichi <nmasu@ma3.justnet.ne.jp>
 
 	* Version 0.3.5.
-	    $B0lHL%f!<%6$,%k!<%H8"8B$GG$0U$N%3%^%s%I$r<B9T$G$-$F$7$^$&$H$$$&(B
-	  $B%;%-%e%j%F%#%[!<%k$r:I$$$@!#(B			(Mausichi)
+	    一般ユーザがルート権限で任意のコマンドを実行できてしまうという
+	  セキュリティホールを塞いだ。			(Mausichi)
 
 1999-11-07  Noritoshi Masuichi <nmasu@ma3.justnet.ne.jp>
 
 	* Version 0.3.4.
-	    0.3.3 $B$G$N(B w3m $B$N$?$a$N2sHr:v$,IT==J,$G$"$k$h$&$J$N$G=$@5!#(B
+	    0.3.3 での w3m のための回避策が不十分であるようなので修正。
 							(Oike)
 
 1999-10-30  Noritoshi Masuichi <nmasu@ma3.justnet.ne.jp>
 
 	* Version 0.3.3.
-	    jfbterm.conf.sample $B$N%$%s%9%H!<%k@h$r(B /etc $B8GDj$+$i(B
-	  $(sysconfdir)$B$G;XDj$G$-$k$h$&$KJQ99$7$?!#(B($B1-;t$5$s$+$i(B
-	    $B<(:6$rD:$-$^$7$?!#$"$o$;$F!"<B9T%U%!%$%k$,!"(Bjfbterm.conf $B$r(B
-	  $BFI$_<h$k%G%#%l%/%H%j$rJQ99$7$?!#(B		(Masuichi)
-	    void main(..) $B$H$J$C$F$$$?$N$r!"(Bint main(..)$B$KD{@5!#(B
-	  egcs $B$G%3%s%Q%$%k;~$KH/3P!#(Bgcc 2.7.2.3 $B$@$H7Y9p$5$l$J$+$C$?!#(B
+	    jfbterm.conf.sample のインストール先を /etc 固定から
+	  $(sysconfdir)で指定できるように変更した。(鵜飼さんから
+	    示唆を頂きました。あわせて、実行ファイルが、jfbterm.conf を
+	  読み取るディレクトリを変更した。		(Masuichi)
+	    void main(..) となっていたのを、int main(..)に訂正。
+	  egcs でコンパイル時に発覚。gcc 2.7.2.3 だと警告されなかった。
 							(Masuichi)
-	    main.c $B$N2~9T%3!<%I$,(B DOS $BE*$G$"$C$?$ND{@5$7$?!#(B
+	    main.c の改行コードが DOS 的であったの訂正した。
 							(Ukai)
-	    $BFH<+$KDj5A$7$F$$$?(B major() $B$HF1MM$N$b$N$,(B sys/sysmacros.h $B$K(B
-	  $B$"$k$N$G$=$A$i$r;HMQ$9$k$h$&$K$7$?!#(B		(Ukai)
-	    tvterm_final $B$,(B2$B2s(B(sigchld->tterm_final->tvterm_final $B$H(B
-	  exit()->atexit$B$5$l$F$k(Bapplication_final->tterm_final->tvterm_final)
-	  $B8F$P$l$k$N$G(B p->savedPen, p->savedPenSL $B$,(B2$B2s(Bfree()$B$9$k$3$H$K(B
-	  $B$J$C$F$7$^$$(B($B1?$,$o$k$$$H(B)seg fault$B$9$k;v$,$"$k$N$r=$@5!#(B
+	    独自に定義していた major() と同様のものが sys/sysmacros.h に
+	  あるのでそちらを使用するようにした。		(Ukai)
+	    tvterm_final が2回(sigchld->tterm_final->tvterm_final と
+	  exit()->atexitされてるapplication_final->tterm_final->tvterm_final)
+	  呼ばれるので p->savedPen, p->savedPenSL が2回free()することに
+	  なってしまい(運がわるいと)seg faultする事があるのを修正。
 							(Ukai)
-	    w3m$B$G(Bmouse $B$rM-8z$K$7$F$$$?>l9g$K;H$o$l$k%(%9%1!<%W%7!<%1%s%9$K(B
-	  $BBP1~$7$F$$$J$$;v$K$h$kIT6q9g$r2sHr!#(B		(Ukai)
-	  $B!D8=:_$O2sHr=hCV$G$9$,!">-MhE*$K$O@5$7$/2r<a$9$k$h$&$K$9$kM=Dj!#(B
+	    w3mでmouse を有効にしていた場合に使われるエスケープシーケンスに
+	  対応していない事による不具合を回避。		(Ukai)
+	  …現在は回避処置ですが、将来的には正しく解釈するようにする予定。
 							(Masuichi)
-	    Version 0.3.2 $B$N=$@5$G$O!"$d$O$j(B gcc2.95$B0J9_$G%3%s%Q%$%k$G$-$J$$(B
-	  $B$N$G!"$=$N=$@5!#(B				(Ukai) (Hatta)
-	    $B4D6-JQ?t(B TERM $B$K@_Dj$9$kCM$r!"(Bjfbterm.conf $B$G;XDj$G$-$k$h$&$K(B
-	  $BD{@5!#(B					(Masuichi)
-	    $B%(%s%3!<%G%#%s%0$r;XDj$G$-$J$+$C$?$N$r=$@5!#(B(Masuichi)
+	    Version 0.3.2 の修正では、やはり gcc2.95以降でコンパイルできない
+	  ので、その修正。				(Ukai) (Hatta)
+	    環境変数 TERM に設定する値を、jfbterm.conf で指定できるように
+	  訂正。					(Masuichi)
+	    エンコーディングを指定できなかったのを修正。(Masuichi)
 
 1999-10-24  Noritoshi Masuichi <nmasu@ma3.justnet.ne.jp>
 
 	* Version 0.3.2.
-	    vga16fb $BBP1~(B($B2#I}$,(B 8 $B$NG\?t$N>l9g0J30$OIT40A4(B)$B!"(B
+	    vga16fb 対応(横幅が 8 の倍数の場合以外は不完全)、
 							(Nagano)
-	    $B>e5-$N(B vga16fb $BMQ$N%3!<%I$N2~NI!#(B		(Noritoshi Masuichi)
-	    gcc2.95$B0J9_$G%3%s%Q%$%k$G$-$J$$;v$N;XE&$H!"=$@5!#(B
+	    上記の vga16fb 用のコードの改良。		(Noritoshi Masuichi)
+	    gcc2.95以降でコンパイルできない事の指摘と、修正。
 							(Yoshii) (Hatta)
-		($BF1;~4|$K$*Fs?M$NJ}$+$iD:$-$^$7$?!#=gITF1(B)
+		(同時期にお二人の方から頂きました。順不同)
 					
 
 1999-10-18  Noritoshi Masuichi <nmasu@ma3.justnet.ne.jp>
 
 	* Version 0.3.1.
-	    tvterm_coord_to_index() $B$,(B $B:G2<9T1&C<(B+1 $B$NCM$r(B 1$B9TL\:8C<$H(B
-	  $B8mG'$9$kLdBj$r=$@5$7$?!#(BTVterm::xcap4 $B$r(B $B<c43Bg$-$/$H$k$h$&$K(B
-	  $B=$@5$9$k$3$H$K$h$jBP=h$7$?!#(B			(Noritoshi Masuichi)
-	    ISO-2022-* $BAjEv$KBP1~$7$?!#$?$@$7!"%"%J%&%s%5$KL$BP1~!#(B
-	  $B$^$?!"=i4|>uBV$O(B ISO-2022-JP $B$H(B EUC-JP $B$N:.9g>uBV$G8GDj!#(B
-	  $B<!%P!<%8%g%s$G=i4|>uBV$r2DJQ$K$9$kM=Dj!#(B	(Noritoshi Masuichi)
-	    jfbterm.conf $BFb$N%U%)%s%H;XDj$N=q<0$rJQ99$7$?!#(B
+	    tvterm_coord_to_index() が 最下行右端+1 の値を 1行目左端と
+	  誤認する問題を修正した。TVterm::xcap4 を 若干大きくとるように
+	  修正することにより対処した。			(Noritoshi Masuichi)
+	    ISO-2022-* 相当に対応した。ただし、アナウンサに未対応。
+	  また、初期状態は ISO-2022-JP と EUC-JP の混合状態で固定。
+	  次バージョンで初期状態を可変にする予定。	(Noritoshi Masuichi)
+	    jfbterm.conf 内のフォント指定の書式を変更した。
 							(Noritoshi Masuichi)
-	    FB_VISUAL_DIRECT $B$H%G%U%!%$%sCML>$,$^$A$,$C$F$$$?$N$rD{@5!#(B
+	    FB_VISUAL_DIRECT とデファイン値名がまちがっていたのを訂正。
 							(Amano)
-	    vga16fb$B$NL5$$8E$$%+!<%M%k%X%C%@$KBP1~$9$k$?$a$N(B#if - #endif $B$rDI2C!#(B
+	    vga16fbの無い古いカーネルヘッダに対応するための#if - #endif を追加。
 							(Amano)
-	    $B%U%)%s%H$r(Bcompress$B$G05=L$7$F$$$k>l9g$X$NBP=h!#(B
+	    フォントをcompressで圧縮している場合への対処。
 							(Amamo)
 							
 
 1999-09-26  Noritoshi Masuichi <nmasu@ma3.justnet.ne.jp>
 
 	* Version 0.2.0.
-	  autoconf/automake $B2=$7$^$7$?!#(B
-	  RGB $B$N3FJ,?'$N%5%$%:$r$-$A$s$HD4$Y$k$h$&$K$7$^$7$?!#(B
+	  autoconf/automake 化しました。
+	  RGB の各分色のサイズをきちんと調べるようにしました。
 
 1999-09-15  Noritoshi Masuichi <nmasu@ma3.justnet.ne.jp>
 
 	* Version 0.1.0-pre-6.
-	  $B%3!<%I$r<c438+D>$7$^$7$?!#(B
-	  $B%U%l!<%`%P%C%U%!$NH=Dj$r87$7$/$7$^$7$?(B(pre-5 $B$^$G$O!"(BDIRECTCOLOR
-	  $B$G$b5/F0$7$F$$$^$7$?$,(BTRUECOLOR$B$@$H$7$FF0$$$F$$$^$7$?(B)$B!#(B
-	  32bpp PACKED-PIXELS TRUECOLOR $B$KBP1~$7$^$7$?!#(B
+	  コードを若干見直しました。
+	  フレームバッファの判定を厳しくしました(pre-5 までは、DIRECTCOLOR
+	  でも起動していましたがTRUECOLORだとして動いていました)。
+	  32bpp PACKED-PIXELS TRUECOLOR に対応しました。
 
 1999-09-15  Noritoshi Masuichi <nmasu@ma3.justnet.ne.jp>
 
 	* Version 0.1.0-pre-5.
-	  mmap(mmio)$B$N%3!<%I$rJQ99$7$F$_$^$7$?!#(B 
-	  $B?eJ?2rA|EY$H(B1$B%i%$%s$N%P%$%H?t$r:.F1$7$F$$$?$N$r=$@5$7$^$7$?!#(B
+	  mmap(mmio)のコードを変更してみました。 
+	  水平解像度と1ラインのバイト数を混同していたのを修正しました。
 
 1999-08-31  Noritoshi Masuichi <nmasu@ma3.justnet.ne.jp>
 
 	* Version 0.1.0-pre-4.
-	  "Cannot mmap(mmio)."$B$,H/@8$7$F$bL5;k$9$k;v$,$G$-$k$h$&$K$7$F$_(B
-	  $B$^$7$?!#(Bjfbterm $B$G$O3NJ]$7$?NN0h$K%"%/%;%9$7$F$$$^$;$s$N$G!"$*(B
-	  $B$=$i$/ITMW$J%3!<%I$@$H;W$&$N$G$9!#(B 
-	  popen("...", "r<B>b</B>") $B$H$J$C$F$$$F!"I8=`E*$J;EMM$N(Bpopen(3)
-	  $B$G$O%Q%$%W$r%*!<%W%s$G$-$J$$$H$$$&IT6q9g$r=$@5$7$^$7$?!#(B
+	  "Cannot mmap(mmio)."が発生しても無視する事ができるようにしてみ
+	  ました。jfbterm では確保した領域にアクセスしていませんので、お
+	  そらく不要なコードだと思うのです。 
+	  popen("...", "r<B>b</B>") となっていて、標準的な仕様のpopen(3)
+	  ではパイプをオープンできないという不具合を修正しました。
 
 1999-08-25  Noritoshi Masuichi <nmasu@ma3.justnet.ne.jp>
 
 	* Version 0.1.0-pre-3.
-	  15,16,24bpp $BBP1~$N%Q%C%A$r$$$?$@$-$^$7$?$N$G!"<h$j9~$_$^$7$?!#(B
-	  $BF0:n3NG'$O$7$F$$$^$;$s!#%Q%C%A$r:n$i$l$?J}$K$h$k$H!"(B
-		  15$B!"(B16$B!"(B24 bpp $B$O(B TRUECOLOR $B$H$7$F7h$aBG$A$K$J$C$F$$$^$9!#(B
-		  16 bpp $B$N(B bitfield $B$r(B (r,g,b)=(5,6,5) $B$H$7$F7h$aBG$A$K$J$C(B
-		  $B$F$$$^$9!#(B
-		  VESA $B%b!<%I$N$_$N%F%9%H$7$+$G$-$F$$$^$;$s!#(B
-		  bpp $BKh$N4X?t?6$jJ,$1$rL5M}LpM}$d$C$F$$$^$9!#(B
-		  16 $B?'$N%F!<%V%k$,E,Ev$G!"I=<($5$l$k$Y$-?'$,=P$J$$$3$H$,(B
-		  $B$"$j$^$9!#(B
-	  $B$H$N$3$H$G$9!#(B
+	  15,16,24bpp 対応のパッチをいただきましたので、取り込みました。
+	  動作確認はしていません。パッチを作られた方によると、
+		  15、16、24 bpp は TRUECOLOR として決め打ちになっています。
+		  16 bpp の bitfield を (r,g,b)=(5,6,5) として決め打ちになっ
+		  ています。
+		  VESA モードのみのテストしかできていません。
+		  bpp 毎の関数振り分けを無理矢理やっています。
+		  16 色のテーブルが適当で、表示されるべき色が出ないことが
+		  あります。
+	  とのことです。
 
 1999-??-??  Noritoshi Masuichi <nmasu@ma3.justnet.ne.jp>
 
 	* Version 0.1.0-pre-2.
-	  pre-1$B$N%"!<%+%$%V$,4V0c$C$F$$$?$N$G:n$jD>$7$^$7$?!#(B
+	  pre-1のアーカイブが間違っていたので作り直しました。
 
 1999-??-??  Noritoshi Masuichi <nmasu@ma3.justnet.ne.jp>
 
 	* Version 0.1.0-pre-1.
-	  Virtual Console $B$KBP1~$7$^$7$?!#(BX $B>e$N(B kterm $B$+$i5/F0$7$F$b(B
-	  $BJL$N2>A[%3%s%=!<%k$GF0:n$7$^$9!#(B($B;d$N$H$3$m$N3+H/4D6-$G$N$_3NG'(B)
-	  /etc/jfbterm.conf $B$+$i@_Dj$rFI$_9~$`$h$&$K$7$^$7$?!#(B
+	  Virtual Console に対応しました。X 上の kterm から起動しても
+	  別の仮想コンソールで動作します。(私のところの開発環境でのみ確認)
+	  /etc/jfbterm.conf から設定を読み込むようにしました。
 
 1999-??-??  Noritoshi Masuichi <nmasu@ma3.justnet.ne.jp>
 
 	* Version 0.1.0-alpha-3.
-	  Linux/PPC $B$G$b(B make $B$G$-$k$h$&$K$J$j$^$7$?!#(B
+	  Linux/PPC でも make できるようになりました。
 
 1999-??-??  Noritoshi Masuichi <nmasu@ma3.justnet.ne.jp>
 
 	* Version 0.1.0-alpha-2.
-	  $B%U%)%s%H%U%!%$%k$G(B *.pcf.gz $B$J$b$N$,FI$a$k$h$&$K$J$j$^$7$?!#(B
-	  ($BMW!"(Bgzip)
-	  $B@)8f%3!<%I$NIT6q9g$r=$@5$7$^$7$?!#(B(jvim $B$,F0$-$^$9!#(B)
+	  フォントファイルで *.pcf.gz なものが読めるようになりました。
+	  (要、gzip)
+	  制御コードの不具合を修正しました。(jvim が動きます。)
 
 1999-??-??  Noritoshi Masuichi <nmasu@ma3.justnet.ne.jp>
 
 	* Version 0.1.0-alpha-1.
-	  $B;n838x3+=iHG(B
+	  試験公開初版
