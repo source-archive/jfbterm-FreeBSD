@@ -1,0 +1,373 @@
+<html>
+<head>
+
+
+<script type="text/javascript" src="/static/js/analytics.js"></script>
+<script type="text/javascript">archive_analytics.values.server_name="wwwb-app8.us.archive.org";archive_analytics.values.server_ms=228;</script>
+<link type="text/css" rel="stylesheet" href="/static/css/banner-styles.css"/>
+
+
+<title>jfbterm for FreeBSD</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="jfbterm for FreeBSD">
+<meta name="keywords" content="jfbterm,FreeBSD">
+<base href="https://web.archive.org/web/20071026032917/http://www.ac.auone-net.jp/~baba/jfbterm/" />
+</head>
+<body>
+
+
+<h1>jfbterm for FreeBSD</h1>
+
+<h2>jfbterm とは</h2>
+
+<p>
+KON をベースに作成されたソフトウェアで、Linux のフレームバッファを使用して多言語表示を行うことが出来ます。
+</p>
+
+<h2>jfbterm for FreeBSD とは</h2>
+
+<p>
+jfbterm バージョン 0.4.7 を FreeBSD に移植したものです。jfbterm for FreeBSD は、jfbterm のライセンスに従うものとします。
+</p>
+
+<h2>必要なもの</h2>
+
+<p>
+jfbterm for FreeBSD を使用するには、VBE 2.0 (VESA BIOS EXTENSION 2.0) に対応したビデオカードが必要です。
+また、8bpp, 15bpp, 16bpp, 24bpp, 32bpp のいずれかの色深度に切り替え可能で、リニア・フレームバッファに対応していることが条件になります。
+</p>
+
+<h2>jfbterm for FreeBSD を使用するには</h2>
+
+<p>
+FreeBSD 6.2-STABLE で、jfbterm for FreeBSD を使用するまでの設定を解説します。
+<p>
+
+<h3>カーネルを再構築する</h3>
+
+<p>
+カーネルコンフィグレーションファイルに次の行を追加して、カーネルの再構築を行ってください。
+</p>
+
+<pre>
+options	SC_PIXEL_MODE
+</pre>
+
+<p>
+SC_PIXEL_MODE の詳細については、syscons(4) のマニュアルページを参照してください。
+</p>
+
+<h3>モジュールをロードする</h3>
+
+<p>
+VESA フレームバッファのモジュールをロードします。
+</p>
+
+<pre>
+# kldload vesa
+</pre>
+
+<h3>画面モードを確認する</h3>
+
+<p>
+使用できる画面モードを確認します。
+検証に使用したのは、Matrox Millennium MIL/4N という古いビデオカードです。
+</p>
+
+<pre>
+% vidcontrol -i mode
+    mode#     flags   type    size       font      window      linear buffer
+------------------------------------------------------------------------------
+  0 (0x000) 0x00000001 T 40x25           8x8   0xb8000 32k 32k 0x00000000 32k
+  1 (0x001) 0x00000001 T 40x25           8x8   0xb8000 32k 32k 0x00000000 32k
+  2 (0x002) 0x00000001 T 80x25           8x8   0xb8000 32k 32k 0x00000000 32k
+  3 (0x003) 0x00000001 T 80x25           8x8   0xb8000 32k 32k 0x00000000 32k
+  4 (0x004) 0x00000003 G 320x200x2 1     8x8   0xb8000 32k 32k 0x00000000 32k
+  5 (0x005) 0x00000003 G 320x200x2 1     8x8   0xb8000 32k 32k 0x00000000 32k
+  6 (0x006) 0x00000003 G 640x200x1 1     8x8   0xb8000 32k 32k 0x00000000 32k
+ 13 (0x00d) 0x00000003 G 320x200x4 4     8x8   0xa0000 64k 64k 0x00000000 256k
+ 14 (0x00e) 0x00000003 G 640x200x4 4     8x8   0xa0000 64k 64k 0x00000000 256k
+ 16 (0x010) 0x00000003 G 640x350x2 2     8x14  0xa0000 64k 64k 0x00000000 128k
+ 18 (0x012) 0x00000003 G 640x350x4 4     8x14  0xa0000 64k 64k 0x00000000 256k
+ 19 (0x013) 0x00000001 T 40x25           8x14  0xb8000 32k 32k 0x00000000 32k
+ 20 (0x014) 0x00000001 T 40x25           8x14  0xb8000 32k 32k 0x00000000 32k
+ 21 (0x015) 0x00000001 T 80x25           8x14  0xb8000 32k 32k 0x00000000 32k
+ 22 (0x016) 0x00000001 T 80x25           8x14  0xb8000 32k 32k 0x00000000 32k
+ 23 (0x017) 0x00000001 T 40x25           8x16  0xb8000 32k 32k 0x00000000 32k
+ 24 (0x018) 0x00000001 T 80x25           8x16  0xb8000 32k 32k 0x00000000 32k
+ 26 (0x01a) 0x00000003 G 640x480x4 4     8x16  0xa0000 64k 64k 0x00000000 256k
+ 27 (0x01b) 0x00000003 G 640x480x4 4     8x16  0xa0000 64k 64k 0x00000000 256k
+ 28 (0x01c) 0x00000003 G 320x200x8 1     8x8   0xa0000 64k 64k 0x00000000 64k
+ 30 (0x01e) 0x00000001 T 80x50           8x8   0xb8000 32k 32k 0x00000000 32k
+ 32 (0x020) 0x00000001 T 80x30           8x16  0xb8000 32k 32k 0x00000000 32k
+ 34 (0x022) 0x00000001 T 80x60           8x8   0xb8000 32k 32k 0x00000000 32k
+ 37 (0x025) 0x00000003 G 320x240x8 4     8x8   0xa0000 64k 64k 0x00000000 256k
+112 (0x070) 0x00000000 T 80x43           8x8   0xb8000 32k 32k 0x00000000 32k
+113 (0x071) 0x00000001 T 80x43           8x8   0xb8000 32k 32k 0x00000000 32k
+256 (0x100) 0x0000000f G 640x400x8 1     8x16  0xa0000 64k 64k 0xfe000000 4096k
+257 (0x101) 0x0000000f G 640x480x8 1     8x16  0xa0000 64k 64k 0xfe000000 4096k
+258 (0x102) 0x0000000b G 800x600x4 4     8x14  0xa0000 64k 64k 0x00000000 4096k
+259 (0x103) 0x0000000f G 800x600x8 1     8x16  0xa0000 64k 64k 0xfe000000 4096k
+261 (0x105) 0x0000000f G 1024x768x8 1    8x16  0xa0000 64k 64k 0xfe000000 4096k
+263 (0x107) 0x0000000f G 1280x1024x8 1   8x16  0xa0000 64k 64k 0xfe000000 4096k
+264 (0x108) 0x00000009 T 80x60           8x8   0xb8000 32k 32k 0x00000000 4096k
+265 (0x109) 0x00000009 T 132x25          8x16  0xb8000 32k 32k 0x00000000 4096k
+267 (0x10b) 0x00000009 T 132x50          8x8   0xb8000 32k 32k 0x00000000 4096k
+268 (0x10c) 0x00000009 T 132x60          8x8   0xb8000 32k 32k 0x00000000 4096k
+272 (0x110) 0x0000000f G 640x480x16 1    8x16  0xa0000 64k 64k 0xfe000000 4096k
+273 (0x111) 0x0000000f G 640x480x16 1    8x16  0xa0000 64k 64k 0xfe000000 4096k
+274 (0x112) 0x0000000f G 640x480x32 1    8x16  0xa0000 64k 64k 0xfe000000 4096k
+275 (0x113) 0x0000000f G 800x600x16 1    8x16  0xa0000 64k 64k 0xfe000000 4096k
+276 (0x114) 0x0000000f G 800x600x16 1    8x16  0xa0000 64k 64k 0xfe000000 4096k
+277 (0x115) 0x0000000f G 800x600x32 1    8x16  0xa0000 64k 64k 0xfe000000 4096k
+278 (0x116) 0x0000000f G 1024x768x16 1   8x16  0xa0000 64k 64k 0xfe000000 4096k
+279 (0x117) 0x0000000f G 1024x768x16 1   8x16  0xa0000 64k 64k 0xfe000000 4096k
+280 (0x118) 0x0000000f G 1024x768x32 1   8x16  0xa0000 64k 64k 0xfe000000 4096k
+281 (0x119) 0x0000000f G 1280x1024x16 1  8x16  0xa0000 64k 64k 0xfe000000 4096k
+282 (0x11a) 0x0000000f G 1280x1024x16 1  8x16  0xa0000 64k 64k 0xfe000000 4096k
+284 (0x11c) 0x0000000f G 1600x1200x8 1   8x16  0xa0000 64k 64k 0xfe000000 4096k
+285 (0x11d) 0x0000000f G 1600x1200x16 1  8x16  0xa0000 64k 64k 0xfe000000 4096k
+286 (0x11e) 0x0000000f G 1600x1200x16 1  8x16  0xa0000 64k 64k 0xfe000000 4096k
+</pre>
+
+<h3>画面モードを変更する</h3>
+
+<p>
+ここでは、例として現在の画面モードを1024x768ドット16bppに変更します。
+</p>
+
+<pre>
+% vidcontrol MODE_279
+</pre>
+
+<p>
+問題がなければ、128文字48行という広いコンソールに切り替わります。
+</p>
+
+<h3>設定を保存する</h3>
+
+<p>
+再起動してしまうと画面モードの設定が元に戻ってしまいますので、各設定ファイルに保存を行います。
+</p>
+
+<p>
+/boot/loader.conf に次の一行を追加します。
+</p>
+
+<pre>
+vesa_load="YES"
+</pre>
+
+<p>
+/etc/rc.conf に次の一行を追加します。
+</p>
+
+<pre>
+allscreens_flags="MODE_279"
+</pre>
+
+<h2>jfbterm for FreeBSD のコンパイルとインストール</h2>
+
+<p>
+コンパイルを行うには GNU make と iconv ライブラリが必要です。
+インストールされていない場合は、Ports Collection から、次の Ports をインストールします。
+</p>
+
+<ul>
+<li>converters/libiconv
+<li>devel/gmake
+</ul>
+
+<p>
+次の手順にしたがって jfbterm for FreeBSD をインストールしてください。
+</p>
+
+<pre>
+% fetch http://osdn.dl.sourceforge.jp/jfbterm/13501/jfbterm-0.4.7.tar.gz
+% tar xvzf jfbterm-0.4.7.tar.gz
+% cd jfbterm-0.4.7
+% fetch http://www.ac.auone-net.jp/~baba/jfbterm/jfbterm-0.4.7-FreeBSD-0.1.diff.gz
+% gunzip jfbterm-0.4.7-FreeBSD-0.1.diff.gz
+% patch < jfbterm-0.4.7-FreeBSD-0.1.diff
+% ./configure CPPFLAGS=-I/usr/local/include LDFLAGS=-L/usr/local/lib --prefix=/usr/local --mandir=/usr/local/man
+% /usr/local/bin/gmake
+% su
+# /usr/local/bin/gmake install
+</pre>
+
+<h2>jfbterm for FreeBSD の設定</h2>
+
+<h3>端末ケーパビリティを追加する</h3>
+
+<p>
+jfbterm の端末ケーパビリティを追加します。
+</p>
+
+<pre>
+# cat termcap.jfbterm >> /usr/share/misc/termcap
+# cap_mkdb /usr/share/misc/termcap
+</pre>
+
+<h3>設定ファイルを用意する</h3>
+
+<p>
+設定ファイルのサンプルをコピーします。
+</p>
+
+<pre>
+# cp /usr/local/etc/jfbterm.conf.sample /usr/local/etc/jfbterm.conf
+</pre>
+
+<h3>X11 のフォントを用意する</h3>
+
+初期設定では、次の X11 のフォントを使用します。
+
+<pre>
+/usr/local/lib/X11/fonts/misc/8x16.pcf.gz
+/usr/local/lib/X11/fonts/misc/jiskan16.pcf.gz
+/usr/local/lib/X11/fonts/local/a18rk.pcf.gz
+/usr/local/lib/X11/fonts/local/jksp16.pcf.gz
+/usr/local/lib/X11/fonts/misc/gb16fs.pcf.gz
+/usr/local/lib/X11/fonts/misc/hanglg16.pcf.gz
+/usr/local/lib/X11/fonts/misc/8x16.pcf.gz
+/usr/local/lib/X11/fonts/local/lt2-16-etl.pcf.gz
+/usr/local/lib/X11/fonts/local/lt3-16-etl.pcf.gz
+/usr/local/lib/X11/fonts/local/lt4-16-etl.pcf.gz
+/usr/local/lib/X11/fonts/local/cyr16-etl.pcf.gz
+/usr/local/lib/X11/fonts/local/grk16-etl.pcf.gz
+/usr/local/lib/X11/fonts/local/heb16-etl.pcf.gz
+/usr/local/lib/X11/fonts/local/lt5-16-etl.pcf.gz
+/usr/local/lib/X11/fonts/misc/8x13-ISO8859-10.pcf.gz
+/usr/local/lib/X11/fonts/misc/8x13-ISO8859-13.pcf.gz
+/usr/local/lib/X11/fonts/misc/8x13-ISO8859-14.pcf.gz
+/usr/local/lib/X11/fonts/misc/8x13-ISO8859-15.pcf.gz
+</pre>
+
+<p>
+これらのフォントがインストールされていない場合は、Ports Collection から、次の Ports をインストールします。
+</p>
+
+<ul>
+<li>x11-fonts/font-daewoo-misc
+<li>x11-fonts/font-isas-misc
+<li>x11-fonts/font-jis-misc
+<li>x11-fonts/font-misc-misc
+<li>x11-fonts/font-sony-misc
+<li>x11-fonts/intlfonts
+</ul>
+
+<h3>GNU unifont をインストールする</h3>
+
+<p>
+GNU unifont をインストールするには、bdftopcf が必要です。
+インストールされていない場合は、Ports Collection から、次の Ports をインストールします。
+</p>
+
+<ul>
+<li>x11-fonts/bdftopcf
+</ul>
+
+<p>
+次の手順にしたがって GNU unifont をインストールしてください。
+</p>
+
+<pre>
+% fetch http://czyborra.com/unifont/hex2bdf
+% fetch http://czyborra.com/unifont/unifont.hex.gz
+% chmod +x hex2bdf
+% gzip -dc unifont.hex.gz | ./hex2bdf | /usr/local/bin/bdftopcf | gzip -9 > unifont.pcf.gz
+% su
+# cp unifont.pcf.gz /usr/local/lib/X11/fonts/local/unifont.pcf.gz
+</pre>
+
+<h2>カラー表示したいときは</h2>
+
+<p>
+環境変数 TERM の値を jfbterm-color に設定するか、設定ファイル /usr/local/etc/jfbterm.conf の term の値を jfbterm から jfbterm-color に変更してください。
+</p>
+
+<pre>
+term: jfbterm-color
+</pre>
+
+<h2>Meta キーを使いたいときは</h2>
+
+<p>
+キーボードに Windows キーがある場合は、Windows キーに Meta キーを割り当てる方法があります。
+ここでは、US104 キーボードを例に解説します。
+</p>
+
+<p>
+syscons(4) のキー割り当て設定ファイルをコピーします。
+</p>
+
+<pre>
+# cp /usr/share/syscons/keymaps/us.iso.kbd /usr/share/syscons/keymaps/us.104.kbd
+</pre>
+
+/usr/share/syscons/keymaps/us.104.kbd のキーコード 105, 106 の設定を変更します。
+
+<pre>
+  105   meta   fkey62 fkey62 fkey62 fkey62 fkey62 fkey62 fkey62  O
+  106   meta   fkey63 fkey63 fkey63 fkey63 fkey63 fkey63 fkey63  O
+</pre>
+
+/etc/rc.conf の keymap の設定を変更します。
+
+<pre>
+keymap="us.104"
+</pre>
+
+<h2>表示速度が遅いときは</h2>
+
+<p>
+VESA フレームバッファの描画速度が遅いと感じることがありますが、ライトコンバインを設定することによって、描画速度を向上することが出来ます。
+</p>
+
+<pre>
+% vidcontrol -i adapter
+fb0:
+    vga0, type:VESA VGA (5), flags:0x700ff
+    initial mode:24, current mode:282, BIOS mode:3
+    frame buffer window:0xfe000000, buffer size:0x400000
+    window size:0x400000, origin:0x0
+    display start address (0, 0), scan line width:2560
+    reserved:0xfe000000
+</pre>
+
+<p>
+ライトコンバインを設定する範囲は、frame buffer window から、buffer size を指定します。
+</p>
+
+<pre>
+# memcontrol set -b 0xfe000000 -l 0x400000 -o vesafb write-combine
+</pre>
+
+<h2>ダウンロード</h2>
+
+<a href="/web/20071026032917/http://www.ac.auone-net.jp/~baba/jfbterm/jfbterm-0.4.7-FreeBSD-0.1.diff.gz">jfbterm-0.4.7-FreeBSD-0.1.diff.gz</a>
+
+<h2>スクリーンショット</h2>
+
+<a href="/web/20071026032917/http://www.ac.auone-net.jp/~baba/jfbterm/emacs21-mule-ucs.png">emacs21+mule-ucs で view-hello-file を実行したところ</a>
+
+<br><br>
+<hr>
+<br>
+Copyright 2007 Yusuke Baba (babayaga1 _at_ y8.dion.ne.jp).
+<br><br>
+</body>
+</html>
+
+
+
+
+
+<!--
+     FILE ARCHIVED ON 3:29:17 Oct 26, 2007 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 4:29:53 Nov 26, 2016.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
