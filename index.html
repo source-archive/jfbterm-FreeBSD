@@ -3,7 +3,7 @@
 
 
 <script type="text/javascript" src="/static/js/analytics.js"></script>
-<script type="text/javascript">archive_analytics.values.server_name="wwwb-app10.us.archive.org";archive_analytics.values.server_ms=100;</script>
+<script type="text/javascript">archive_analytics.values.server_name="wwwb-app4.us.archive.org";archive_analytics.values.server_ms=332;</script>
 <link type="text/css" rel="stylesheet" href="/static/css/banner-styles.css"/>
 
 
@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="description" content="jfbterm for FreeBSD">
 <meta name="keywords" content="jfbterm,FreeBSD">
-<base href="https://web.archive.org/web/20071126084605/http://www.ac.auone-net.jp/~baba/jfbterm/" />
+<base href="https://web.archive.org/web/20071226211745/http://www.ac.auone-net.jp/~baba/jfbterm/" />
 </head>
 <body>
 
@@ -29,8 +29,16 @@ KON をベースに作成されたソフトウェアで、Linux のフレーム�
 <h2>jfbterm for FreeBSD とは</h2>
 
 <p>
-jfbterm バージョン 0.4.7 を FreeBSD に移植したものです。
+jfbterm バージョン 0.4.7 を FreeBSD に移植したものです。オリジナルにない機能は次のとおりです。
 </p>
+
+<ul>
+<li>ビープ音を鳴らすことが可能です。
+<li>カーソルを点滅させることが可能です。
+<li>バックスクロールが可能です。
+<li>背景に画像を表示することが可能です。
+<li>256 色表示が可能です。
+</ul>
 
 <h2>必要なもの</h2>
 
@@ -88,9 +96,9 @@ jfbterm for FreeBSD をインストールするには、libiconv、gmake、pkg-c
 </p>
 
 <pre>
-% fetch http://www.ac.auone-net.jp/~baba/jfbterm/jfbterm-0.4.7-FreeBSD-0.3.0.tar.gz
-% tar xvzf jfbterm-0.4.7-FreeBSD-0.3.0.tar.gz
-% cd jfbterm-0.4.7-FreeBSD-0.3.0
+% fetch http://www.ac.auone-net.jp/~baba/jfbterm/jfbterm-0.4.7-FreeBSD-0.4.0.tar.gz
+% tar xvzf jfbterm-0.4.7-FreeBSD-0.4.0.tar.gz
+% cd jfbterm-0.4.7-FreeBSD-0.4.0
 % ./configure CPPFLAGS=-I/usr/local/include LDFLAGS=-L/usr/local/lib --prefix=/usr/local --mandir=/usr/local/man
 % /usr/local/bin/gmake
 % su
@@ -128,7 +136,7 @@ jfbterm の端末ケーパビリティを追加します。
 </p>
 
 <pre>
-# cat termcap.jfbterm >> /usr/share/misc/termcap
+# cat /usr/local/share/jfbterm/termcap.jfbterm >> /usr/share/misc/termcap
 # cap_mkdb /usr/share/misc/termcap
 </pre>
 
@@ -254,15 +262,18 @@ fb0:
 
 <h2>ダウンロード</h2>
 
-<a href="/web/20071126084605/http://www.ac.auone-net.jp/~baba/jfbterm/jfbterm-0.4.7-FreeBSD-0.3.0.tar.gz">jfbterm-0.4.7-FreeBSD-0.3.0.tar.gz</a>
+<a href="/web/20071226211745/http://www.ac.auone-net.jp/~baba/jfbterm/jfbterm-0.4.7-FreeBSD-0.4.0.tar.gz">jfbterm-0.4.7-FreeBSD-0.4.0.tar.gz</a>
 
 <h2>スクリーンショット</h2>
 
 <h3>emacs21+mule-ucs で view-hello-file を実行したところ</h3>
-<img src="/web/20071126084605im_/http://www.ac.auone-net.jp/~baba/jfbterm/emacs21-mule-ucs.png">
+<img src="/web/20071226211745im_/http://www.ac.auone-net.jp/~baba/jfbterm/emacs21-mule-ucs.png">
+
+<h3>256 色表示を行ったところ</h3>
+<img src="/web/20071226211745im_/http://www.ac.auone-net.jp/~baba/jfbterm/256color-demo.png">
 
 <h3>端末の背景に画像を表示したところ</h3>
-<img src="/web/20071126084605im_/http://www.ac.auone-net.jp/~baba/jfbterm/wallpaper-demo.jpg">
+<img src="/web/20071226211745im_/http://www.ac.auone-net.jp/~baba/jfbterm/wallpaper-demo.jpg">
 
 
 <br><br>
@@ -278,8 +289,8 @@ fb0:
 
 
 <!--
-     FILE ARCHIVED ON 8:46:05 Nov 26, 2007 AND RETRIEVED FROM THE
-     INTERNET ARCHIVE ON 4:33:07 Nov 26, 2016.
+     FILE ARCHIVED ON 21:17:45 Dec 26, 2007 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 4:35:16 Nov 26, 2016.
      JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
 
      ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
